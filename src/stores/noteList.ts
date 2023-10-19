@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import type { Note,NoteItems } from "@/types"
-import { getNotes,insertNote,searchNote,updateNote,searchNoteTerms,delNote } from '@/api/note'
+import { getNotes,insertNote,searchNote,updateNote,searchNoteTerms,delNote,searchCount } from '@/api/note'
 export const useListStore = defineStore( 'list',{
     state:() => {
         return {
@@ -11,13 +11,7 @@ export const useListStore = defineStore( 'list',{
         //获取分页笔记
         async getNotesList(index:number,count:number){
          const res = await getNotes<NoteItems>(index,count)
-         if(index === 1){
-            this.list = res   
-         }else{
-            this.list.push(...res)
-         }
-         
-         return [...res]
+         return res
         },
         //新增笔记
         async addNoteList(data){
@@ -32,14 +26,19 @@ export const useListStore = defineStore( 'list',{
             return await updateNote<Note>(data)
         },
         //条件分页查询
-        async searchNoteTerm(params){
-            const res = await searchNoteTerms<Note>(params)
+        async searchNoteTerm(value:string,index:number,count:number){
+            const res = await searchNoteTerms<Note>(value,index,count)
             this.list = res 
             return res
         },
         //删除笔记
         async delNote(params){
             return await delNote(params)
+        },
+        //获取总记录数
+        async searchCount<T>(){
+            return  await searchCount<number>()
+            
         }
     }
 })

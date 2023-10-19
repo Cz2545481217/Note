@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://192.168.246.4:8088'
+axios.defaults.baseURL = 'http://192.168.158.1:8088'
 axios.interceptors.request.use(config => {
     return config
 })
@@ -18,6 +18,8 @@ axios.interceptors.response.use(
         }else if(res.data.type === 'del'){
             console.log(res.data)
             return res.data
+        }else if(res.data.type === 'count'){
+            return res.data.data
         }
     },
     (err) => {
