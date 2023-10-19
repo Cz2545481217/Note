@@ -7,8 +7,13 @@ export  function  getNotes<T>(index: number, count: number) {
         method: 'get',
         url: '/page',
         params: {
+<<<<<<< HEAD
             index: index, 
             count: count 
+=======
+            index: index,
+            count: count
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
         }
     }) as Promise<T>
 }
@@ -51,6 +56,7 @@ export function searchNote(id){
     })
 }
 //条件分页查询
+<<<<<<< HEAD
 export function searchNoteTerms<Note>(value:string,index:number,count:number){
     return axios({
         url:'/search?value='+value+'&index='+index+'&count='+count,
@@ -63,4 +69,12 @@ export function searchCount<T>(){
         url:'/count',
         method:'get'
     })
+=======
+export function searchNoteTerms<Note>(value:string){
+    return axios({
+        url:'/search?value='+value+'&index=1&count=10',
+        method:'get',
+    })
+    
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
 }

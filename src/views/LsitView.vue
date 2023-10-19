@@ -4,7 +4,11 @@ import { ref, onMounted, watch, nextTick, reactive,getCurrentInstance } from 'vu
 import { useListStore } from "@/stores/noteList"
 import moment from 'moment'
 import { useRouter } from 'vue-router'
+<<<<<<< HEAD
 import { showConfirmDialog, showFailToast, showSuccessToast } from 'vant';
+=======
+import useLoadMore from '@/use/useLoadMore'
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
 import {debounce} from '@/utils/debounce'
 const notes = ref([] as NoteItems)
 const items = ref([] as HTMLElement[])
@@ -23,7 +27,11 @@ const goNote = (id:any) => {
 const stateV = reactive({
   value:'',
   page:1,
+<<<<<<< HEAD
   count:1000000000
+=======
+  count:10
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
 })
 //点击跳转至添加界面
 const goAdd = () => {
@@ -42,7 +50,11 @@ const noteListState: noteListStates = {
 }
 //条件查询事件
 const searchs = () => {
+<<<<<<< HEAD
   store.searchNoteTerm(stateV.value,stateV.page,stateV.count).then((res)=>{
+=======
+  store.searchNoteTerm(stateV.value).then((res)=>{
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
        items.value = []
        notes.value = res
   })
@@ -80,6 +92,7 @@ const initLRlist = () => {
     state.rightList = rightArr.reverse()
   })
 }
+<<<<<<< HEAD
 
 //删除笔记
 const delNote = (id:any) => {
@@ -100,10 +113,15 @@ const delNote = (id:any) => {
     })
     
   })
+=======
+//加载更多
+const loadMore = () => {
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
   
 }
 onMounted(() => {
   intiList()
+<<<<<<< HEAD
   //节流
   // useLoadMore(refListBox,loadMore)
 })
@@ -111,6 +129,30 @@ watch(notes, () => {initLRlist()})
 let timeOutEvent = 0
 watch(()=>stateV.value,debounce(searchs,1000))
 
+=======
+  useLoadMore(refListBox,searchs)
+})
+watch(notes, () => {initLRlist()})
+let timeOutEvent = 0
+
+//长按事件
+const startTouch = (id:any) => {
+  clearTimeout(_this.timeOutEvent)
+  _this.timeOutEvent = setTimeout(()=>{
+    _this.timeOutEvent = 0
+    store.delNote(id).then((res)=>{ code.value = res })
+    
+  },600)
+}
+//单击事件
+const endTouch = (id:any) => {
+  clearTimeout(_this.timeOutEvent)
+  if(_this.timeOutEvent != 0){
+    goNote(id)
+  }
+}
+watch(()=>stateV.value,debounce(searchs,1000))
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
 </script>
 <template>
     <van-nav-bar >
@@ -123,9 +165,14 @@ watch(()=>stateV.value,debounce(searchs,1000))
     </van-nav-bar>
     <div class="note-box">
       <div class="list-box" ref="refListBox">
+<<<<<<< HEAD
       <div class="list-left" ref="lefDom">
         <div class="list-item"  @click="goNote(note.id)"  v-for="note in state.leftList" :key="note['id']">
           <van-icon @click="delNote(note.id)" name="cross" style="color: red; float: right;"/>
+=======
+      <div class="list-left">
+        <div class="list-item" @touchstart.prevent="startTouch(note.id)"  @touchend.prevent="endTouch(note.id)" v-for="note in state.leftList" :key="note['id']">
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
           <div class="item-content">
             <p class="item-text">
               {{ note.title }}
@@ -138,9 +185,14 @@ watch(()=>stateV.value,debounce(searchs,1000))
           </div>
         </div>
       </div>
+<<<<<<< HEAD
       <div class="list-right" ref="rightDom">
         <div class="list-item" @click="goNote(note.id)"  v-for="note in state.rightList" :key="note['id']">
           <van-icon @click="delNote(note.id)" name="cross" style="color: red; float: right;"/>
+=======
+      <div class="list-right">
+        <div class="list-item" @touchstart.prevent="startTouch(note.id)"  @touchend.prevent="endTouch(note.id)" v-for="note in state.rightList" :key="note['id']">
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
           <div class="item-content">
             <p class="item-text">
               {{ note.title }}

@@ -1,4 +1,8 @@
 import { fileURLToPath, URL } from 'node:url'
+<<<<<<< HEAD
+=======
+
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -12,7 +16,11 @@ export default defineConfig({
     vueJsx(),
     Components({
       resolvers: [VantResolver()],
+<<<<<<< HEAD
     }),
+=======
+    })
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
   ],
   resolve: {
     alias: {

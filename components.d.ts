@@ -9,11 +9,15 @@ declare module 'vue' {
   export interface GlobalComponents {
     Add: typeof import('./src/components/add/index.vue')['default']
     Added: typeof import('./src/components/added/added.vue')['default']
+<<<<<<< HEAD
     DelDialog: typeof import('./src/components/delDialog.vue')['default']
+=======
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
     Insert: typeof import('./src/components/insert/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Update: typeof import('./src/components/update/update.vue')['default']
+<<<<<<< HEAD
     VanButton: typeof import('vant/es')['Button']
     VanCellGroup: typeof import('vant/es')['CellGroup']
     VanCol: typeof import('vant/es')['Col']
@@ -23,6 +27,12 @@ declare module 'vue' {
     VanIcon: typeof import('vant/es')['Icon']
     VanNavBar: typeof import('vant/es')['NavBar']
     VanRow: typeof import('vant/es')['Row']
+=======
+    VanField: typeof import('vant/es')['Field']
+    VanFiled: typeof import('vant/es')['Filed']
+    VanIcon: typeof import('vant/es')['Icon']
+    VanNavBar: typeof import('vant/es')['NavBar']
+>>>>>>> f09d897f74d9a963b67221ff122bc8297c855338
     VanSearch: typeof import('vant/es')['Search']
   }
 }
